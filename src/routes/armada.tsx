@@ -20,6 +20,8 @@ const armadaQuery = queryOptions({
   queryFn: () => daftarArmadaPublik(),
 });
 
+const OPSI_BAHAN_BAKAR_STANDAR = ["Bensin", "Solar", "Listrik"];
+
 export const Route = createFileRoute("/armada")({
   loader: ({ context }) => context.queryClient.ensureQueryData(armadaQuery),
   head: () => ({
@@ -51,18 +53,22 @@ function HalamanArmada() {
   const [bahanBakar, setBahanBakar] = useState("semua");
   const [transmisi, setTransmisi] = useState("semua");
 
-  const bahanBakarTersedia = useMemo(
-    () =>
-      Array.from(
-        new Set(
-          data
-            .map((m) => m.fuel_type)
-            .filter(Boolean)
-            .map((b) => b.trim()),
-        ),
-      ).sort(),
-    [data],
-  );
+  const bahanBakarTersedia = useMemo(() => {
+    const dariData = data
+      .map((m) => m.fuel_type)
+      .filter(Boolean)
+      .map((b) => b.trim());
+
+    const mapUnik = new Map<string, string>();
+    [...OPSI_BAHAN_BAKAR_STANDAR, ...dariData].forEach((item) => {
+      const key = item.toLowerCase();
+      if (!mapUnik.has(key)) {
+        mapUnik.set(key, item.charAt(0).toUpperCase() + item.slice(1));
+      }
+    });
+
+    return Array.from(mapUnik.values());
+  }, [data]);
 
   const hasil = useMemo(
     () =>
@@ -119,7 +125,7 @@ function HalamanArmada() {
               <SelectContent>
                 <SelectItem value="semua">Semua bahan bakar</SelectItem>
                 {bahanBakarTersedia.map((b) => (
-                  <SelectItem key={b} value={b} className="capitalize">
+                  <SelectItem key={b} value={b}>
                     {b}
                   </SelectItem>
                 ))}
