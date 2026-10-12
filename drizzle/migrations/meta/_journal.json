@@ -1,0 +1,55 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1791630480794,
+      "tag": "0000_restore_on_auth_user_created_trigger",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791719057596,
+      "tag": "0001_promote_renter_to_admin",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791743861907,
+      "tag": "0002_harden_internal_and_summary_functions",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1791745643035,
+      "tag": "0003_staff_only_storage_update",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791749134861,
+      "tag": "0004_fix_audit_log_non_uuid_id",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1791750176705,
+      "tag": "0005_enforce_renter_eligibility_on_contract",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1791751487775,
+      "tag": "0006_fix_check_renter_eligibility_array_append",
+      "breakpoints": true
+    }
+  ]
+}
