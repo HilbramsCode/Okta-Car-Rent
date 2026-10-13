@@ -23,14 +23,19 @@ export function PanelSorotan({ sorotan }: { sorotan: Sorotan[] }) {
   return (
     <section aria-label="Sorotan penting" className="space-y-3">
       {sorotan.slice(0, 4).map((s, i) => {
-        const Ikon = s.tingkat === "bahaya" ? AlertCircle : s.tingkat === "sukses" ? CheckCircle2 : Info;
+        const Ikon =
+          s.tingkat === "bahaya" ? AlertCircle : s.tingkat === "sukses" ? CheckCircle2 : Info;
         return (
           <div
             key={i}
             className={`flex items-start gap-3 rounded-lg border p-4 ${gaya[s.tingkat]}`}
           >
             <Ikon className="mt-0.5 size-5 shrink-0" aria-hidden />
-            <p className="text-base font-medium">{s.pesan}</p>
+            <p
+              className={`text-base font-medium ${s.tingkat === "peringatan" ? "text-destructive" : ""}`}
+            >
+              {s.pesan}
+            </p>
           </div>
         );
       })}
